@@ -1,4 +1,10 @@
-import psutil, datetime, json, schedule, time
+#!/usr/bin/python
+
+import psutil
+import datetime
+import json
+import schedule
+import time
 
 config = json.loads(open("config.json").read())
 file_type = config['common']['output']
@@ -73,4 +79,4 @@ schedule.every(int(period)).seconds.do(main)
 
 while True:
     schedule.run_pending()
-    # time.sleep(0)
+    time.sleep(0)

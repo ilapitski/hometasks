@@ -2,6 +2,8 @@
 
 from collections import Counter
 with open('apache_access.log') as inputfile:
-    count = Counter(line.split('-', 1)[0].strip() for line in inputfile)
+    count = Counter(line.split('- -', 1)[0].rstrip() for line in inputfile)
 
-print count.most_common(10)
+for ip in count.most_common(10):
+    print(ip)
+
