@@ -38,7 +38,7 @@ class JsonData(ConvertToDict):
         timestamp = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
         global counter
         json_file = open("outputdata.json", "a")
-        json_file.write('\n{{\n"Snapshot {0}":"{1}",\n'.format(counter, timestamp))
+        json_file.write('{{\n"Snapshot {0}": "{1}",'.format(counter, timestamp))
         json_file.write('\n"System-wide CPU utilization per cpu":\n')
         json.dump(super().converttodict((psutil.cpu_times())),json_file, indent=4)
         json_file.write('\n, "System Memory usage":\n')
@@ -47,9 +47,9 @@ class JsonData(ConvertToDict):
         json.dump(super().converttodict(psutil.swap_memory()), json_file, indent=4)
         json_file.write('\n, "System-wide Disk I/O statistics":\n')
         json.dump(super().converttodict(psutil.disk_io_counters()), json_file, indent=4)
-        json_file.write('\n ,"System-wide Network I/O statistics":\n')
+        json_file.write('\n , "System-wide Network I/O statistics":\n')
         json.dump(psutil.net_io_counters(pernic=True), json_file, indent=4)
-        json_file.write('\n}')
+        json_file.write('\n}\n\n')
         counter += 1
         json_file.close()
         print(timestamp)
@@ -66,11 +66,11 @@ def main():
         print('Output file type = {}, interval = {} seconds'.format(file_type, period))
         json0.json_to_file()
     else:
-        print("Bad filetype in config file")
+        print("Unknown type of file in config")
         quit()
 
 schedule.every(int(period)).seconds.do(main)
 
 while True:
     schedule.run_pending()
-    time.sleep(0)
+    # time.sleep(0)
