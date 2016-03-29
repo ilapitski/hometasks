@@ -6,10 +6,12 @@ import json
 import schedule
 import time
 import logging
+import logging.config
 
 config = json.loads(open("config.json").read())
 file_type = config['common']['output']
 period = config['common']['interval']
+log_level = config['common']['level']
 counter = 1
 file_txt0 = "outputdata.txt"
 file_json0 = "outputdata.json"
@@ -17,8 +19,8 @@ file_json0 = "outputdata.json"
 
 handler = logging.FileHandler('monitor.log')
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+logger.setLevel(log_level)
+formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
@@ -29,9 +31,9 @@ def logger(function0):
     """
     def wrapper(self, file_name):
         wrapper.counter += 1
-        print("\nStart logging of {} function".format(function0.__name__))
+        print("\nWRAPPER: Start logging of {} function".format(function0.__name__))
         result = function0(self, file_name)
-        print("{} has been called {} times with parameters {}\n".format(function0.__name__, wrapper.counter, file_name))
+        print("WRAPPER: {} has been called {} times with parameters {}\n".format(function0.__name__, wrapper.counter, file_name))
         logging.info("Wrapper invoked")
         return result
     wrapper.counter = 0
