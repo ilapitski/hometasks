@@ -1,0 +1,50 @@
+2016-03-29 18:52:25,250 root         INFO     Object <__main__.JsonData object at 0x7f1859826358> was created successfully
+2016-03-29 18:52:25,250 root         INFO     Object <__main__.TxtData object at 0x7f1859826438> was created successfully
+2016-03-29 18:52:25,250 root         ERROR    Can not start scheduler, unsupported type for timedelta seconds component: str
+Traceback (most recent call last):
+  File "/home/super_user/PycharmProjects/mtnlabpython/Hometask5/monitor.py", line 119, in <module>
+    schedule.every(period).seconds.do(main)
+  File "/home/super_user/.pyenv/versions/3.5.0/lib/python3.5/site-packages/schedule/__init__.py", line 282, in do
+    self._schedule_next_run()
+  File "/home/super_user/.pyenv/versions/3.5.0/lib/python3.5/site-packages/schedule/__init__.py", line 303, in _schedule_next_run
+    self.period = datetime.timedelta(**{self.unit: self.interval})
+TypeError: unsupported type for timedelta seconds component: str
+2016-03-29 18:52:50,344 root         INFO     Object <__main__.JsonData object at 0x7f889410e358> was created successfully
+2016-03-29 18:52:50,344 root         INFO     Object <__main__.TxtData object at 0x7f889410e438> was created successfully
+2016-03-29 18:52:50,344 root         INFO     Scheduler started
+2016-03-29 18:52:55,344 schedule     INFO     Running job Every 5 seconds do main() (last run: [never], next run: 2016-03-29 18:52:55)
+2016-03-29 18:52:55,345 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:52:55,345 root         INFO     wrapper invoked
+2016-03-29 18:53:00,345 schedule     INFO     Running job Every 5 seconds do main() (last run: 2016-03-29 18:52:55, next run: 2016-03-29 18:53:00)
+2016-03-29 18:53:00,347 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:53:00,347 root         INFO     wrapper invoked
+2016-03-29 18:53:05,347 schedule     INFO     Running job Every 5 seconds do main() (last run: 2016-03-29 18:53:00, next run: 2016-03-29 18:53:05)
+2016-03-29 18:53:05,348 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:53:05,348 root         INFO     wrapper invoked
+2016-03-29 18:55:38,870 root         INFO     Object <__main__.JsonData object at 0x7f32db3bb358> was created successfully
+2016-03-29 18:55:38,871 root         INFO     Object <__main__.TxtData object at 0x7f32db3bb438> was created successfully
+2016-03-29 18:55:38,871 root         INFO     Scheduler started
+2016-03-29 18:55:43,871 schedule     INFO     Running job Every 5 seconds do main() (last run: [never], next run: 2016-03-29 18:55:43)
+2016-03-29 18:55:43,872 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:55:43,872 root         INFO     Wrapper invoked
+2016-03-29 18:55:48,872 schedule     INFO     Running job Every 5 seconds do main() (last run: 2016-03-29 18:55:43, next run: 2016-03-29 18:55:48)
+2016-03-29 18:55:48,881 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:55:48,881 root         INFO     Wrapper invoked
+2016-03-29 18:57:18,168 root         INFO     Object <__main__.JsonData object at 0x7fc3fad72390> was created successfully
+2016-03-29 18:57:18,168 root         INFO     Object <__main__.TxtData object at 0x7fc3fad72470> was created successfully
+2016-03-29 18:57:18,168 root         INFO     Scheduler started
+2016-03-29 18:57:23,168 schedule     INFO     Running job Every 5 seconds do main() (last run: [never], next run: 2016-03-29 18:57:23)
+2016-03-29 18:57:23,170 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:57:23,170 root         INFO     Wrapper invoked
+2016-03-29 18:57:28,170 schedule     INFO     Running job Every 5 seconds do main() (last run: 2016-03-29 18:57:23, next run: 2016-03-29 18:57:28)
+2016-03-29 18:57:28,171 root         INFO     outputdata.txt file written successfully
+2016-03-29 18:57:28,171 root         INFO     Wrapper invoked
+2016-03-29 18:59:19,535 root         INFO     Object <__main__.JsonData object at 0x7fb3620ca320> was created successfully
+2016-03-29 18:59:19,535 root         INFO     Object <__main__.TxtData object at 0x7fb3620ca400> was created successfully
+2016-03-29 18:59:19,535 root         INFO     Scheduler started
+2016-03-29 18:59:24,535 schedule     INFO     Running job Every 5 seconds do main() (last run: [never], next run: 2016-03-29 18:59:24)
+2016-03-29 18:59:24,536 root         INFO     outputdata.json file written successfully
+2016-03-29 18:59:24,536 root         INFO     Wrapper invoked
+2016-03-29 18:59:29,537 schedule     INFO     Running job Every 5 seconds do main() (last run: 2016-03-29 18:59:24, next run: 2016-03-29 18:59:29)
+2016-03-29 18:59:29,538 root         INFO     outputdata.json file written successfully
+2016-03-29 18:59:29,538 root         INFO     Wrapper invoked
