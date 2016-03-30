@@ -123,7 +123,7 @@ def main():
     elif file_type == "json":
         json0.json_to_file(file_json0)
     else:
-        logging.info("Unknown type of file in config")
+        logging.error("Unknown type of file in config")
         quit()
 
 
