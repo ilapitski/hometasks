@@ -20,7 +20,7 @@ file_json0 = "outputdata.json"
 handler = logging.FileHandler('monitor.log')
 logger = logging.getLogger()
 logger.setLevel(log_level)
-formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
+formatter = logging.Formatter('%(asctime)s %(name)-10s %(levelname)-10s %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
