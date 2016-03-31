@@ -23,7 +23,6 @@ except FileNotFoundError:
 
 period = config['common']['interval']
 file_type = config['common']['output']
-counter = 1
 file_txt0 = "outputdata.txt"
 file_json0 = "outputdata.json"
 
@@ -52,6 +51,8 @@ def logger_decorator(function0):
 
 
 class ConvertToDict(object):
+    counter0 = 1
+
     def converttodict(self, psutil_info):
         """Converts psutil format into dictionary"""
         value = list(psutil_info)
@@ -59,21 +60,26 @@ class ConvertToDict(object):
         dict0 = dict(zip(key, value))
         return dict0
 
+    @classmethod
+    def counter_increment(cls):
+        """Method increments snapshot counter"""
+        cls.counter0 += 1
+        logging.info("Snapshot counter incremented to {}".format(cls.counter0))
+
 
 class TxtData(ConvertToDict):
     @logger_decorator
     def txt_to_file(self, file_txt):
         # write info to outputdata.txt file
         timestamp = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-        global counter
         txt_file = open(file_txt, "a")
-        txt_file.write("\n###Snapshot {0} : {1} ###\n".format(counter, timestamp))
+        txt_file.write("\n###Snapshot {0} : {1} ###\n".format(ConvertToDict.counter0, timestamp))
         txt_file.write("--- System-wide CPU utilization per cpu---\n{0}\n".format(psutil.cpu_times()))
         txt_file.write("--- System-wide Memory usage---\n{0}\n".format(psutil.virtual_memory()))
         txt_file.write("--- System-wide Swap memory statistics---\n{0}\n".format(psutil.swap_memory()))
         txt_file.write("--- System-wide Disk I/O statistics---\n{0}\n".format(psutil.disk_io_counters()))
         txt_file.write("--- System-wide Network I/O statistics---\n{0}\n".format(psutil.net_io_counters(pernic=True)))
-        counter += 1
+        ConvertToDict.counter_increment()
         txt_file.close()
         print(timestamp)
         logging.info("{} file written successfully".format(file_txt))
@@ -84,9 +90,8 @@ class JsonData(ConvertToDict):
     def json_to_file(self, file_json):
         # write info to outputdata.json file
         timestamp = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-        global counter
         json_file = open(file_json, "a")
-        json_file.write('{{\n"Snapshot {0}": "{1}",'.format(counter, timestamp))
+        json_file.write('{{\n"Snapshot {0}": "{1}",'.format(ConvertToDict.counter0, timestamp))
         json_file.write('\n"System-wide CPU utilization per cpu":\n')
         json.dump(super().converttodict((psutil.cpu_times())), json_file, indent=4)
         json_file.write('\n, "System Memory usage":\n')
@@ -98,7 +103,7 @@ class JsonData(ConvertToDict):
         json_file.write('\n , "System-wide Network I/O statistics":\n')
         json.dump(psutil.net_io_counters(pernic=True), json_file, indent=4)
         json_file.write('\n}\n\n')
-        counter += 1
+        ConvertToDict.counter_increment()
         json_file.close()
         print(timestamp)
         logging.info("{} file written successfully".format(file_json))
